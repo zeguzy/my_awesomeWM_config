@@ -33,12 +33,13 @@ run compton --shadow-exclude '!focused'
 run blueman-applet
 #run msm_notifier
 run conky
+run mate-power-manager
 run fcitx
 run pa-applet
-#run ppet
+run ppet
 run utools
 run touchpad-indicator
-
+~/.config/awesome/arandr.sh
 ## The following are not included in minimal edition by default
 ## but autorun.sh will pick them up if you install them
 
