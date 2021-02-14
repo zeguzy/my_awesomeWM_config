@@ -5,7 +5,6 @@ pcall(require, "luarocks.loader")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-require("awful.autofocus")
 
 -- Widget and layout library
 local wibox = require("wibox")
@@ -24,7 +23,6 @@ require("awful.hotkeys_popup.keys")
 
 -- freedesktop 
 local freedesktop = require("freedesktop")
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -54,7 +52,6 @@ do
     end)
 end
 -- }}}
-
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(awful.util.getdir("config") .. "/themes/gtk/theme.lua")
@@ -199,7 +196,7 @@ end
 awful.screen.connect_for_each_screen(function(s)
 
     -- 下面是tag设置
-    local names = {"@", "", "", "2", ""}
+    local names = {"@", "+", "", "2", ""}
     local l = awful.layout.suit -- Just to save some typing: use an alias.
     local layouts = {
         l.tile.left, l.tile.left, l.tile.left, l.floating, l.floating,
@@ -278,7 +275,11 @@ awful.screen.connect_for_each_screen(function(s)
         style = {
             --    	border_width = 1,
             --   	border_color = '#777777',
-            shape = gears.shape.squircle
+            -- shape = gears.shape.powerline
+            -- shape = gears.shape.rectangular_tag
+            -- shape = gears.shape.hexagon
+            -- shape = gears.shape.rounded_bar
+            shape = gears.shape.rounded_rect
 
         },
         layout = {
@@ -303,12 +304,12 @@ awful.screen.connect_for_each_screen(function(s)
                     {id = 'text_role', widget = wibox.widget.textbox},
                     layout = wibox.layout.fixed.horizontal
                 },
-                left = 4,
-                right = 4,
+                left = 20,
+                right = 20,
                 widget = wibox.container.margin
             },
             id = 'background_role',
-            forced_width = 148,
+            forced_width = 248,
             widget = wibox.container.background
         }
 
@@ -334,8 +335,9 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({
         position = "top",
         screen = s,
-        height = 25,
-        opacity = 0.7
+        height = 27,
+        opacity = 0.8,
+        shape = gears.shape.rounded_rect
     })
 
     -- Add widgets to the wibox
@@ -359,6 +361,7 @@ awful.screen.connect_for_each_screen(function(s)
             spacer,
             mytextclock,
             s.mylayoutbox,
+            spacer,
             layout = wibox.layout.fixed.horizontal
         }
     }
@@ -426,6 +429,7 @@ end, {description = "run fileManager", group = "launcher"}),
     group = "launcher"
 }), awful.key({modkey}, "c", function() awful.spawn(vscode) end,
               {description = "run vscode", group = "launcher"}),
+
 -- Standard program
                               awful.key({modkey}, "Return",
                                         function() awful.spawn(terminal) end, {
@@ -647,7 +651,8 @@ awful.rules.rules = {
             sticky = true,
             -- ontop = true,
             titlebars_enabled = false,
-            placement = awful.placement.bottom_right
+            --           placement = awful.placement.bottom_right
+            placement = awful.placement.center_horizontal
         }
     }, {
         rule = {class = 'qqmusic'},
@@ -703,6 +708,7 @@ client.connect_signal("request::titlebars", function(c)
     top_titlebar:setup{
 
         { -- Left
+            spacer,
             awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
             layout = wibox.layout.fixed.horizontal
@@ -717,7 +723,7 @@ client.connect_signal("request::titlebars", function(c)
         },
         { -- Right
             awful.titlebar.widget.floatingbutton(c),
-            --           awful.titlebar.widget.maximizedbutton(c),
+            -- awful.titlebar.widget.maximizedbutton(c),
             -- awful.titlebar.widget.stickybutton   (c),
             awful.titlebar.widget.ontopbutton(c),
             awful.titlebar.widget.closebutton(c),
@@ -738,4 +744,7 @@ client.connect_signal("unfocus",
                       function(c) c.border_color = beautiful.border_normal end)
 
 naughty.config.defaults.shape = gears.shape.rounded_rect
-naughty.config.defaults.position = 'top_right'
+naughty.config.defaults.position = 'bottom_right'
+
+-- 执行自启动脚本
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")

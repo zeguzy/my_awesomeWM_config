@@ -17,29 +17,27 @@ fi
 if (command -v /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 && ! pgrep polkit-mate-aut) ; then
     /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 fi
-if (command -v  xfce4-power-manager && ! pgrep xfce4-power-man) ; then
-    xfce4-power-manager &
-fi
 
+~/.config/awesome/arandr.sh
 run nitrogen --restore 
-#run xfsettingsd
 run nm-applet
 run light-locker
 #run xcape -e 'Super_L=Super_L|Control_L|Escape'
-#run thunar --daemon
+run thunar --daemon
 run pamac-tray
 run flameshot
-run compton --shadow-exclude '!focused'
+#run compton --shadow-exclude '!focused'
+run compton
 run blueman-applet
-#run msm_notifier
+run msm_notifier
 run conky
 run mate-power-manager
-run fcitx
+run fcitx5
 run pa-applet
 run ppet
 run utools
 run touchpad-indicator
-~/.config/awesome/arandr.sh
+#run indicator-china-weather
 ## The following are not included in minimal edition by default
 ## but autorun.sh will pick them up if you install them
 
