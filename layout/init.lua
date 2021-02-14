@@ -1,3 +1,4 @@
+-- 布局和freedesktop右键菜单
 local awful = require("awful")
 
 -- Theme handling library

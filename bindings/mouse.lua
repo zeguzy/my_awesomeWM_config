@@ -1,3 +1,4 @@
+-- 鼠标绑定
 local gears = require("gears")
 local awful = require("awful")
 

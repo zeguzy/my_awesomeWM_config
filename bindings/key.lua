@@ -1,3 +1,4 @@
+-- 快捷键绑定
 local gears = require("gears")
 local awful = require("awful")
 
