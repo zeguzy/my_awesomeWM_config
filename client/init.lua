@@ -10,6 +10,10 @@ client.connect_signal("manage", function(c)
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
 
+    --圆角
+    c.shape = function(cr,w,h)
+      gears.shape.rounded_rect(cr,w,h,5)
+    end
     if awesome.startup and not c.size_hints.user_position and
         not c.size_hints.program_position then
         -- Prevent clients from being unreachable after screen count changes.
@@ -20,7 +24,8 @@ end)
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
-    local top_titlebar = awful.titlebar(c, {size = 19})
+    local top_titlebar = awful.titlebar(c, {size = 19,
+  })
     -- buttons for the titlebar
     local buttons = gears.table.join(awful.button({}, 1, function()
         client.focus = c

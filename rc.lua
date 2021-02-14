@@ -36,4 +36,4 @@ require('client')
 require('naughtys')
 
 -- 执行自启动脚本
-awful.spawn.with_shell("./script/autorun.sh")
+awful.spawn.with_shell("~/.config/awesome/script/autorun.sh")
