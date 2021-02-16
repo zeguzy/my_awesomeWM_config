@@ -18,7 +18,7 @@ if (command -v /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 && ! pgre
     /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 fi
 
-~/.config/awesome/arandr.sh
+~/.config/awesome/script/arandr.sh
 run nitrogen --restore 
 run nm-applet
 run light-locker
