@@ -148,11 +148,13 @@ awful.screen.connect_for_each_screen(function(s)
         position = "top",
         screen = s,
         height = 29,
-        opacity = 0.5,
+        opacity = 0.6,
         width = 1910,
         border_width = 2,
         shape = gears.shape.rounded_rect
     })
+    
+    mysystray = wibox.widget.systray()
 
     -- Add widgets to the wibox
     s.mywibox:setup{
@@ -169,8 +171,9 @@ awful.screen.connect_for_each_screen(function(s)
             s.mytasklist -- Middle widget
         },
         { -- Right widgets
+
+            mysystray,
             spacer,
-            wibox.widget.systray(),
             spacer,
             spacer,
             mytextclock,

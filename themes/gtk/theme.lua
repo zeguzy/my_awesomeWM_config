@@ -131,6 +131,7 @@ theme.border_width  = dpi(theme.gtk.button_border_width or 1)
 theme.border_radius = theme.gtk.button_border_radius
 
 theme.useless_gap   = dpi(1)
+theme.systray_icon_spacing =8 
 
 --拖动窗口 贴近边沿
 theme.snap_bg = theme.gtk.header_button_bg_color
