@@ -50,7 +50,7 @@ awful.screen.connect_for_each_screen(function(s)
     local names = {"@", "+", "", "2", ""}
     local l = awful.layout.suit -- Just to save some typing: use an alias.
     local layouts = {
-        l.tile.left, l.tile.left, l.tile.left, l.floating, l.floating,
+        l.fair, l.tile.left, l.tile.left, l.floating, l.floating,
         l.floating
     }
     awful.tag(names, s, layouts)
@@ -148,7 +148,7 @@ awful.screen.connect_for_each_screen(function(s)
         position = "top",
         screen = s,
         height = 29,
-        opacity = 0.6,
+        opacity = 0.8,
         width = 1910,
         border_width = 2,
         shape = gears.shape.rounded_rect

@@ -101,7 +101,7 @@ theme.gtk.menubar_border_color = mix(
 )
 
 
-theme.icon_theme = "Lucrezia Dark"
+theme.icon_theme = "Fluent"
 theme.font          = theme.gtk.font_family .. ' ' .. theme.gtk.font_size
 --theme.font          = "苹果丽黑字体 14"
 
@@ -123,7 +123,7 @@ theme.fg_minimize   = mix(theme.wibar_fg, theme.wibar_bg, 0.9)
 theme.bg_systray    = theme.wibar_bg
 
 --theme.border_normal = theme.gtk.wm_border_unfocused_color
-theme.border_normal = "#00000000"
+theme.border_normal = "#0000000"
 theme.border_focus  = theme.gtk.wm_border_focused_color
 theme.border_marked = theme.gtk.success_color
 
@@ -131,7 +131,7 @@ theme.border_width  = dpi(theme.gtk.button_border_width or 1)
 theme.border_radius = theme.gtk.button_border_radius
 
 theme.useless_gap   = dpi(1)
-theme.systray_icon_spacing =8 
+theme.systray_icon_spacing =3 
 
 --拖动窗口 贴近边沿
 theme.snap_bg = theme.gtk.header_button_bg_color

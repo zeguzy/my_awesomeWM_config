@@ -18,6 +18,7 @@ if (command -v /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 && ! pgre
     /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 fi
 
+run utools
 ~/.config/awesome/script/arandr.sh
 run nitrogen --restore 
 run nm-applet
@@ -27,16 +28,17 @@ run thunar --daemon
 run pamac-tray
 run flameshot
 #run compton --shadow-exclude '!focused'
-run compton
+run picom
 run blueman-applet
 run msm_notifier
-run conky
 run mate-power-manager
 run fcitx5
 run pa-applet
-run ppet
-run utools
+#run ppet
+run picom
+run  plank
 run touchpad-indicator
+run conky
 #run indicator-china-weather
 ## The following are not included in minimal edition by default
 ## but autorun.sh will pick them up if you install them

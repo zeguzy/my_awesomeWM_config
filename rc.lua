@@ -29,11 +29,12 @@ require('bindings')
 -- 窗口匹配规则
 require('rules')
 
+-- 执行自启动脚本
+awful.spawn.with_shell("~/.config/awesome/script/autorun.sh")
+
 -- 新窗口
 require('client')
 
 -- 通知
 require('naughtys')
 
--- 执行自启动脚本
-awful.spawn.with_shell("~/.config/awesome/script/autorun.sh")

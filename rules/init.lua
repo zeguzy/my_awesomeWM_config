@@ -52,7 +52,10 @@ awful.rules.rules = {
     }, -- Add titlebars to normal clients and dialogs
     {
         rule_any = {class = {"netease-cloud-music"}},
-        properties = {titlebars_enabled = true}
+        properties = {
+            floating = true,
+            border_width = 0,
+            titlebars_enabled = true}
     }, {rule = {}, properties = {placement = awful.placement.centered}},
 
     {rule = {class = 'Alacritty'}, properties = {width = 960, height = 640}}, {
@@ -73,10 +76,33 @@ awful.rules.rules = {
             sticky = true,
             -- ontop = true,
             titlebars_enabled = false,
-            --           placement = awful.placement.bottom_right
-            placement = awful.placement.center_horizontal
+            placement = awful.placement.bottom_right
         }
-    }, {
+    },
+    {
+        rule = {class = 'Plank'},
+        properties = {
+            border_width = 0,
+            sticky = true,
+          }},
+    {
+        rule = {class = 'conky'},
+        properties = {
+            floating = true,
+            border_width = 0,
+            placement = awful.placement.bottom_left,
+            titlebars_enabled = false,
+            focusable = false,
+            skip_taskbar = true,
+            sticky = true,
+          }},
+    {
+        rule = {class = 'Wine'},
+        properties = {
+            border_width = 0,
+            titlebars_enabled = false,
+          }},
+    {
         rule = {class = 'qqmusic'},
         properties = {
             floating = true,
