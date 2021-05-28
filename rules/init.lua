@@ -1,5 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
+beautiful.useless_gap = 3
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
@@ -8,15 +9,16 @@ awful.rules.rules = {
     {
         rule = {},
         properties = {
-            border_width = beautiful.border_width,
-            border_color = beautiful.border_normal,
+            -- border_width = beautiful.border_width,
+            border_width = 0,
+            -- border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
-            raise = true,
+            raise = false,
             keys = clientkeys,
             buttons = clientbuttons,
             screen = awful.screen.preferred,
-            placement = awful.placement.no_overlap +
-                awful.placement.no_offscreen
+            placement = awful.placement.centered + awful.placement.top+awful.placement.no_overlap + awful.placement.no_offscreen
+            --
         }
     }, -- Floating clients.
     {
@@ -30,7 +32,7 @@ awful.rules.rules = {
                 "Arandr", "Blueman-manager", "Gpick", "Kruler", "MessageWin", -- kalarm.
                 "Sxiv", "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                 "Wpa_gui", "veromix", "xtightvncviewer", "conky",
-                "netease-cloud-music"
+                "netease-cloud-music", "Variety"
             },
 
             -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -51,12 +53,33 @@ awful.rules.rules = {
         properties = {titlebars_enabled = true}
     }, -- Add titlebars to normal clients and dialogs
     {
+        rule_any = {class = {"Pulseeffects"}},
+        properties = {
+            floating = true,
+            border_width = 0,
+            screen = screen[1],
+            titlebars_enabled = false
+        }
+    }, {
+        rule_any = {class = {"Cairo-clock"}},
+        properties = {
+            floating = true,
+            border_width = 0,
+            screen = screen[1],
+            skip_taskbar = true,
+            sticky = true,
+            focusable = false,
+            placement = awful.placement.top,
+            titlebars_enabled = false
+        }
+    }, {
         rule_any = {class = {"netease-cloud-music"}},
         properties = {
             floating = true,
             border_width = 0,
-            titlebars_enabled = true}
-    }, {rule = {}, properties = {placement = awful.placement.centered}},
+            titlebars_enabled = true
+        }
+    }, {rule = {}, properties = {titlebars_enabled = false}},
 
     {rule = {class = 'Alacritty'}, properties = {width = 960, height = 640}}, {
         rule = {class = 'uTools'},
@@ -65,7 +88,7 @@ awful.rules.rules = {
             ontop = true,
             border_width = 0
         }
-    }, {rule = {class = 'plank'}, properties = {border_enable = false}}, {
+    }, {
         rule = {class = 'PPet'},
         properties = {
             border_width = 0,
@@ -79,36 +102,53 @@ awful.rules.rules = {
             placement = awful.placement.bottom_right
         }
     },
-    {
-        rule = {class = 'Plank'},
-        properties = {
-            border_width = 0,
-            sticky = true,
-          }},
+    {rule = {class = 'Plank'}, properties = {border_width = 0, sticky = true}},
     {
         rule = {class = 'conky'},
         properties = {
             floating = true,
             border_width = 0,
-            placement = awful.placement.bottom_left,
+            placement = awful.placement.top_left,
             titlebars_enabled = false,
             focusable = false,
             skip_taskbar = true,
-            sticky = true,
-          }},
-    {
+            sticky = true
+        }
+    }, {
         rule = {class = 'Wine'},
         properties = {
             border_width = 0,
-            titlebars_enabled = false,
-          }},
-    {
+            floating = true,
+            titlebars_enabled = false
+        }
+    }, {
         rule = {class = 'qqmusic'},
         properties = {
             floating = true,
             placement = awful.placement.centered,
             width = 640,
             height = 48,
+            titlebars_enabled = false
+        }
+    }, {
+        rule = {class = 'TeamViewer'},
+        properties = {
+            floating = true,
+            placement = awful.placement.centered
+            --       titlebars_enabled = false
+        }
+    }, {
+        rule = {class = 'Gnome-boxes'},
+        properties = {
+            --       floating = true,
+            placement = awful.placement.centered,
+            titlebars_enabled = false
+        }
+    }, {
+        rule = {class = 'Opera'},
+        properties = {
+            --       floating = true,
+            placement = awful.placement.centered,
             titlebars_enabled = false
         }
     }, {
@@ -119,7 +159,6 @@ awful.rules.rules = {
             width = 640,
             height = 48,
             titlebars_enabled = false
-            -- shape_bounding = shape.squircle(cr, 70, 70, 8)
         }
     }
 }

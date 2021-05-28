@@ -101,7 +101,7 @@ theme.gtk.menubar_border_color = mix(
 )
 
 
-theme.icon_theme = "Fluent"
+theme.icon_theme = "Papirus-Dark"
 theme.font          = theme.gtk.font_family .. ' ' .. theme.gtk.font_size
 --theme.font          = "苹果丽黑字体 14"
 
@@ -158,7 +158,7 @@ theme.tasklist_fg_focus = theme.tasklist_fg_normal
 --theme.tasklist_bg_focus = theme.tasklist_bg_normal
 --theme.tasklist_bg_focus = theme.gtk.header_button_bg_color
 theme.tasklist_bg_focus = theme.gtk.selected_bg_color
-
+theme.tasklist_plain_task_name=true
 
 --theme.tasklist_font_focus = theme.gtk.bold_font
 
@@ -242,13 +242,18 @@ theme.taglist_shape_border_color_container = theme.gtk.header_button_border_colo
 -- }}}
 
 
---theme.taglist_bg_focus = theme.wibar_bg
---theme.taglist_bg_focus = "#e53935"
+theme.taglist_bg_focus = theme.wibar_bg
+theme.taglist_bg_focus = "#22282D"
 
 theme.taglist_bg_occupied = theme.gtk.header_button_bg_color
 theme.taglist_fg_occupied = theme.gtk.header_button_fg_color
-theme.taglist_spacing = 4
-theme.taglist_font = 'webdings 17'
+--theme.taglist_font = 'webdings 17'
+theme.taglist_fg_focus    = theme.gtk.selected_bg_color
+theme.taglist_fg_occupied = "#FFC68F"
+theme.taglist_fg_urgent   = "#ED7572"
+theme.taglist_fg_empty    = "#C7C7C7" 
+theme.taglist_spacing     = 0
+theme.taglist_font        = "awesomewm-font 16"
 
 --[[
 theme.taglist_bg_empty = mix(
@@ -342,7 +347,7 @@ theme.menu_fg_normal = theme.gtk.menubar_fg_color
 theme.menu_height = dpi(24)
 theme.menu_width  = dpi(150)
 theme.menu_submenu_icon = nil
-theme.menu_submenu = "▸ "
+theme.menu_submenu = "+ "
 theme.menu_font = "苹果丽黑字体 14"
 -- You can add as many variables as
 -- you wish and access them by using
@@ -376,7 +381,7 @@ theme = theme_assets.recolor_titlebar(
 ]]--
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = "Lucrezia Dark"
+theme.icon_theme = "Papirus-Dark"
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(

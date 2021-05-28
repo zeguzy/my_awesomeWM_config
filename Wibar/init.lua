@@ -1,7 +1,9 @@
 local wibox = require("wibox")
-
 local gears = require("gears")
 local awful = require("awful")
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock("%a   %H:%M ", 60)
@@ -47,11 +49,13 @@ end
 -- screen.connect_signal("property::geometry", set_wallpaper)
 awful.screen.connect_for_each_screen(function(s)
     -- 下面是tag设置
-    local names = {"@", "+", "", "2", ""}
+    --local names = {"@", "+", "", "2", "",""}
+    --local names = { "A", "W", "E", "S", "O", "M", "E"}
+    local names = { "a", "w", "w", "s", "o", "m", "e"}
     local l = awful.layout.suit -- Just to save some typing: use an alias.
     local layouts = {
-        l.fair, l.tile.left, l.tile.left, l.floating, l.floating,
-        l.floating
+        l.tile.left, l.tile.left, l.tile.left, l.floating, l.floating,
+        l.floating,l.floating
     }
     awful.tag(names, s, layouts)
     -- Create a promptbox for each screen
@@ -85,13 +89,13 @@ awful.screen.connect_for_each_screen(function(s)
         filter = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
         style = {
-            --    	border_width = 1,
-            --   	border_color = '#777777',
+                	border_width = 3,
+               	border_color = '#000',
             -- shape = gears.shape.powerline
             -- shape = gears.shape.rectangular_tag
             -- shape = gears.shape.hexagon
             -- shape = gears.shape.rounded_bar
-            shape = gears.shape.rounded_rect
+            -- shape = gears.shape.rounded_rect
 
         },
         layout = {
@@ -113,6 +117,7 @@ awful.screen.connect_for_each_screen(function(s)
                         margins = 0,
                         widget = wibox.container.margin
                     },
+
                     {id = 'text_role', widget = wibox.widget.textbox},
                     layout = wibox.layout.fixed.horizontal
                 },
@@ -121,7 +126,7 @@ awful.screen.connect_for_each_screen(function(s)
                 widget = wibox.container.margin
             },
             id = 'background_role',
-            forced_width = 248,
+            forced_width = 200,
             widget = wibox.container.background
         }
 
@@ -147,11 +152,13 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({
         position = "top",
         screen = s,
-        height = 29,
-        opacity = 0.8,
-        width = 1910,
-        border_width = 2,
-        shape = gears.shape.rounded_rect
+        height = 28,
+        opacity = 0.6,
+        --width = 1900,
+        --border_width = 5,
+        --shape = gears.shape.rounded_rect
+
+        
     })
     
     mysystray = wibox.widget.systray()
@@ -164,19 +171,30 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
             separator
-            --            s.mypromptbox,
+            --s.mypromptbox,
         },
         {
             layout = wibox.layout.fixed.horizontal,
-            s.mytasklist -- Middle widget
+--            s.mytasklist -- Middle widget
         },
         { -- Right widgets
-
+            cpu_widget({
+                    width = 70,
+                    step_width = 2,
+                    step_spacing = 1,
+                    --enable_kill_button=true,
+                    timeout=5
+                    }),
+            spacer,
+            spacer,
+            spacer,
             mysystray,
             spacer,
             spacer,
-            spacer,
             mytextclock,
+            logout_menu_widget(),
+            spacer,
+            spacer,
             s.mylayoutbox,
             spacer,
             layout = wibox.layout.fixed.horizontal

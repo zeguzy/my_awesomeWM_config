@@ -19,11 +19,14 @@ if (command -v /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 && ! pgre
 fi
 
 run utools
-~/.config/awesome/script/arandr.sh
+#~/.config/awesome/script/arandr.sh
 run nitrogen --restore 
+#run variety
+#run firewall-applet 
 run nm-applet
 run light-locker
-#run xcape -e 'Super_L=Super_L|Control_L|Escape'
+run pulseaudio --start
+run xcape -e 'Super_L=Super_L|Control_L|Escape'
 run thunar --daemon
 run pamac-tray
 run flameshot
@@ -32,7 +35,7 @@ run picom
 run blueman-applet
 run msm_notifier
 run mate-power-manager
-run fcitx5
+run fcitx
 run pa-applet
 #run ppet
 run picom

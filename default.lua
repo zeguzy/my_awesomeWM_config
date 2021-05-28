@@ -11,9 +11,12 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 -- 个人快捷键设置
-filemanager = "thunar"
+filemanager = "pcmanfm"
 -- filemanager = "alacritty -e ranger"
-browser = "google-chrome-stable"
+browser = "microsoft-edge-beta"
 music = "netease-cloud-music"
 vscode = "code"
 volume = "pavucontrol"
+flameshot = "flameshot gui"
+nextWallpaper = "variety -n"
+previousWallpaper = "variety -p"

@@ -87,9 +87,10 @@ end, {description = "decrease the number of columns", group = "layout"}),
         c:emit_signal("request::activate", "key.unminimize", {raise = true})
     end
 end, {description = "restore minimized", group = "client"}), -- Prompt
-awful.key({modkey}, "r",
-          function() awful.screen.focused().mypromptbox:run() end,
-          {description = "run prompt", group = "launcher"}),
+
+--awful.key({modkey}, "r",
+--function() awful.screen.focused().mypromptbox:run() end,
+--{description = "run prompt", group = "launcher"}),
                               awful.key({modkey}, "x",
                                         function() menubar.show() end, {
     description = "show the menubar",
@@ -97,6 +98,8 @@ awful.key({modkey}, "r",
 }), -- 个人快捷键
 awful.key({modkey}, "b", function() awful.spawn(browser) end,
           {description = "run browser", group = "launcher"}),
+awful.key({modkey}, "p", function() awful.spawn(flameshot) end,
+          {description = "run flameshot", group = "launcher"}),
                               awful.key({modkey}, "e", function()
     awful.spawn(filemanager)
 end, {description = "run fileManager", group = "launcher"}),

@@ -12,7 +12,7 @@ client.connect_signal("manage", function(c)
 
     --圆角
     c.shape = function(cr,w,h)
-      gears.shape.rounded_rect(cr,w,h,6)
+      gears.shape.rounded_rect(cr,w,h,5)
     end
     if awesome.startup and not c.size_hints.user_position and
         not c.size_hints.program_position then
