@@ -2,7 +2,7 @@
 
 ## run (only once) processes which spawn with the same name
 function run {
-   if (command -v $1 && ! pgrep $1); then
+   if (command -v $1 && ! pgrep  -u $USER $1); then
      $@&
    fi
 }
