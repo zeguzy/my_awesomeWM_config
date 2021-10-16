@@ -102,8 +102,7 @@ theme.gtk.menubar_border_color = mix(
 
 
 theme.icon_theme = "Papirus-Dark"
---theme.font          = theme.gtk.font_family .. ' ' .. theme.gtk.font_size
-theme.font          = 'sans 14'
+theme.font          = theme.gtk.font_family .. ' ' .. theme.gtk.font_size
 --theme.font          = "苹果丽黑字体 14"
 
 theme.bg_normal     = theme.gtk.bg_color

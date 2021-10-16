@@ -49,9 +49,9 @@ end
 -- screen.connect_signal("property::geometry", set_wallpaper)
 awful.screen.connect_for_each_screen(function(s)
     -- 下面是tag设置
-    --local names = {"@", "+", "", "2", "",""}
+    local names = {"@", "+", "", "2", "",""}
     --local names = { "A", "W", "E", "S", "O", "M", "E"}
-    local names = { "a", "w", "w", "s", "o", "m", "e"}
+    --local names = { "a", "w", "w", "s", "o", "m", "e"}
     local l = awful.layout.suit -- Just to save some typing: use an alias.
     local layouts = {
         l.tile.left, l.tile.left, l.tile.left, l.floating, l.floating,
@@ -152,13 +152,11 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({
         position = "top",
         screen = s,
-        height = 28,
+        height = 24,
         opacity = 0.6,
         --width = 1900,
         --border_width = 5,
         --shape = gears.shape.rounded_rect
-
-        
     })
     
     mysystray = wibox.widget.systray()
@@ -170,16 +168,18 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
-            separator
+            spacer
+            -- separator
             --s.mypromptbox,
         },
         {
+            s.mylayoutbox,
             layout = wibox.layout.fixed.horizontal,
 --            s.mytasklist -- Middle widget
         },
         { -- Right widgets
             cpu_widget({
-                    width = 70,
+                    width = 50,
                     step_width = 2,
                     step_spacing = 1,
                     --enable_kill_button=true,
@@ -190,13 +190,12 @@ awful.screen.connect_for_each_screen(function(s)
             spacer,
             mysystray,
             spacer,
-            spacer,
+            -- spacer,
             mytextclock,
             logout_menu_widget(),
             spacer,
-            spacer,
-            s.mylayoutbox,
-            spacer,
+            -- spacer,
+            -- spacer,
             layout = wibox.layout.fixed.horizontal
         }
     }
