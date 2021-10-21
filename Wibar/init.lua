@@ -2,7 +2,9 @@ local wibox = require("wibox")
 local gears = require("gears")
 local awful = require("awful")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
-local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+local logout_menu_widget = require(
+                               "awesome-wm-widgets.logout-menu-widget.logout-menu")
+local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -49,13 +51,13 @@ end
 -- screen.connect_signal("property::geometry", set_wallpaper)
 awful.screen.connect_for_each_screen(function(s)
     -- 下面是tag设置
-    local names = {"@", "+", "", "2", "",""}
-    --local names = { "A", "W", "E", "S", "O", "M", "E"}
-    --local names = { "a", "w", "w", "s", "o", "m", "e"}
+    local names = {"", "", "", "", "", ""}
+    -- local names = { "A", "W", "E", "S", "O", "M", "E"}
+    -- local names = { "a", "w", "w", "s", "o", "m", "e"}
     local l = awful.layout.suit -- Just to save some typing: use an alias.
     local layouts = {
         l.tile.left, l.tile.left, l.tile.left, l.floating, l.floating,
-        l.floating,l.floating
+        l.floating, l.floating
     }
     awful.tag(names, s, layouts)
     -- Create a promptbox for each screen
@@ -84,52 +86,57 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create a tasklist widget
+    -- s.mytasklist = awful.widget.tasklist {
+    --     screen = s,
+    --     filter = awful.widget.tasklist.filter.currenttags,
+    --     buttons = tasklist_buttons,
+    --     style = {
+    --             	border_width = 3,
+    --            	border_color = '#000',
+    --         -- shape = gears.shape.powerline
+    --         -- shape = gears.shape.rectangular_tag
+    --         -- shape = gears.shape.hexagon
+    --         -- shape = gears.shape.rounded_bar
+    --         -- shape = gears.shape.rounded_rect
+
+    --     },
+    --     layout = {
+    --         spacing = 1,
+    --         spacing_widget = {
+    --             {forced_width = 0, widget = wibox.widget.separator},
+    --             valign = 'right',
+    --             halign = 'center',
+    --             widget = wibox.container.place
+    --         },
+
+    --         layout = wibox.layout.fixed.horizontal
+    --     },
+    --     widget_template = {
+    --         {
+    --             {
+    --                 {
+    --                     {id = 'icon_role', widget = wibox.widget.imagebox},
+    --                     margins = 0,
+    --                     widget = wibox.container.margin
+    --                 },
+
+    --                 {id = 'text_role', widget = wibox.widget.textbox},
+    --                 layout = wibox.layout.fixed.horizontal
+    --             },
+    --             left = 20,
+    --             right = 20,
+    --             widget = wibox.container.margin
+    --         },
+    --         id = 'background_role',
+    --         -- forced_width = 200,
+    --         widget = wibox.container.background
+    --     }
+
+    -- }
     s.mytasklist = awful.widget.tasklist {
         screen = s,
         filter = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons,
-        style = {
-                	border_width = 3,
-               	border_color = '#000',
-            -- shape = gears.shape.powerline
-            -- shape = gears.shape.rectangular_tag
-            -- shape = gears.shape.hexagon
-            -- shape = gears.shape.rounded_bar
-            -- shape = gears.shape.rounded_rect
-
-        },
-        layout = {
-            spacing = 1,
-            spacing_widget = {
-                {forced_width = 0, widget = wibox.widget.separator},
-                valign = 'right',
-                halign = 'center',
-                widget = wibox.container.place
-            },
-
-            layout = wibox.layout.fixed.horizontal
-        },
-        widget_template = {
-            {
-                {
-                    {
-                        {id = 'icon_role', widget = wibox.widget.imagebox},
-                        margins = 0,
-                        widget = wibox.container.margin
-                    },
-
-                    {id = 'text_role', widget = wibox.widget.textbox},
-                    layout = wibox.layout.fixed.horizontal
-                },
-                left = 20,
-                right = 20,
-                widget = wibox.container.margin
-            },
-            id = 'background_role',
-            forced_width = 200,
-            widget = wibox.container.background
-        }
-
+        buttons = tasklist_buttons
     }
     -- local month_calendar = awful.widget.calendar_popup.month()
     -- month_calendar:attach( mytextclock, 'tr' )
@@ -153,12 +160,12 @@ awful.screen.connect_for_each_screen(function(s)
         position = "top",
         screen = s,
         height = 24,
-        opacity = 0.6,
-        --width = 1900,
-        --border_width = 5,
-        --shape = gears.shape.rounded_rect
+        opacity = 0.6
+        -- width = 1900,
+        -- border_width = 5,
+        -- shape = gears.shape.rounded_rect
     })
-    
+
     mysystray = wibox.widget.systray()
 
     -- Add widgets to the wibox
@@ -168,34 +175,34 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
-            spacer
-            -- separator
-            --s.mypromptbox,
-        },
-        {
+            spacer,
             s.mylayoutbox,
-            layout = wibox.layout.fixed.horizontal,
---            s.mytasklist -- Middle widget
-        },
-        { -- Right widgets
+            spacer,
+            spacer,
+            todo_widget(),
+            spacer,
             cpu_widget({
-                    width = 50,
-                    step_width = 2,
-                    step_spacing = 1,
-                    --enable_kill_button=true,
-                    timeout=5
-                    }),
+                width = 40,
+                step_width = 5,
+                step_spacing = 1,
+                enable_kill_button=true,
+                timeout = 2
+            }),
             spacer,
-            spacer,
+            -- separator
+            -- s.mypromptbox,
+        },
+        s.mytasklist, -- Middle widget
+        { -- Right widgets
+            -- separator,
             spacer,
             mysystray,
             spacer,
-            -- spacer,
+            spacer,
+            spacer,
             mytextclock,
             logout_menu_widget(),
             spacer,
-            -- spacer,
-            -- spacer,
             layout = wibox.layout.fixed.horizontal
         }
     }

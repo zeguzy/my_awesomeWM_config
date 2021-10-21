@@ -248,7 +248,7 @@ theme.taglist_bg_focus = "#22282D"
 
 theme.taglist_bg_occupied = theme.gtk.header_button_bg_color
 theme.taglist_fg_occupied = theme.gtk.header_button_fg_color
---theme.taglist_font = 'webdings 17'
+--theme.taglist_font = 'FontAwesome 17'
 theme.taglist_fg_focus    = theme.gtk.selected_bg_color
 theme.taglist_fg_occupied = "#FFC68F"
 theme.taglist_fg_urgent   = "#ED7572"

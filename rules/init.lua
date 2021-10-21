@@ -114,14 +114,24 @@ awful.rules.rules = {
             skip_taskbar = true,
             sticky = true
         }
-    }, {
+    }, 
+    {
         rule = {class = 'Wine'},
         properties = {
             border_width = 0,
             floating = true,
             titlebars_enabled = false
         }
-    }, {
+    },
+    {
+        rule = {class = 'flameshot'},
+        properties = {
+            border_width = 0,
+            floating = true,
+            titlebars_enabled = false
+        }
+    }
+    , {
         rule = {class = 'qqmusic'},
         properties = {
             floating = true,
