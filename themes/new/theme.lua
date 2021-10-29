@@ -75,7 +75,7 @@ theme.menu_width  = dpi(100)
 -- {{{ Taglist
 theme.taglist_squares_sel   = themes_path .. "zenburn/taglist/squarefz.png"
 theme.taglist_squares_unsel = themes_path .. "zenburn/taglist/squarez.png"
-theme.taglist_font = 'FontAwesome 17'
+theme.taglist_font = 'FontAwesome 14'
 theme.taglist_spacing     = 10
 theme.taglist_squares_resize = "false"
 -- }}}
@@ -85,7 +85,7 @@ theme.systray_icon_spacing =12
 
 
 --{{{TaskList
-theme.tasklist_font= 'FontAwesome 12'
+theme.tasklist_font = 'FontAwesome 11'
 --}}}
 
 -- {{{ Misc
@@ -110,6 +110,7 @@ theme.layout_cornernw   = themes_path .. "zenburn/layouts/cornernw.png"
 theme.layout_cornerne   = themes_path .. "zenburn/layouts/cornerne.png"
 theme.layout_cornersw   = themes_path .. "zenburn/layouts/cornersw.png"
 theme.layout_cornerse   = themes_path .. "zenburn/layouts/cornerse.png"
+theme.layoutlist_font   = 'FontAwesome 12'
 -- }}}
 
 -- {{{ Titlebar
