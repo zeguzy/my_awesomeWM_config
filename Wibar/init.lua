@@ -160,7 +160,7 @@ awful.screen.connect_for_each_screen(function(s)
         position = "top",
         screen = s,
         height = 27,
-        opacity = 0.6
+        opacity = 0.4
         -- width = 1900,
         -- border_width = 5,
         -- shape = gears.shape.rounded_rect

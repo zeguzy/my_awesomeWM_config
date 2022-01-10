@@ -12,7 +12,7 @@ theme.wallpaper = themes_path .. "zenburn/zenburn-background.png"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "sans 14"
+theme.font      = "sans 12"
 
 -- {{{ Colors
 theme.fg_normal  = "#DCDCCC"
@@ -75,7 +75,7 @@ theme.menu_width  = dpi(100)
 -- {{{ Taglist
 theme.taglist_squares_sel   = themes_path .. "zenburn/taglist/squarefz.png"
 theme.taglist_squares_unsel = themes_path .. "zenburn/taglist/squarez.png"
-theme.taglist_font = 'FontAwesome 14'
+theme.taglist_font = 'FontAwesome 12'
 theme.taglist_spacing     = 10
 theme.taglist_squares_resize = "false"
 -- }}}
@@ -85,7 +85,7 @@ theme.systray_icon_spacing =12
 
 
 --{{{TaskList
-theme.tasklist_font = 'FontAwesome 11'
+theme.tasklist_font = 'FontAwesome 12'
 --}}}
 
 -- {{{ Misc
