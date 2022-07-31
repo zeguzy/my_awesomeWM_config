@@ -25,7 +25,7 @@ theme.bg_systray = theme.bg_normal
 -- }}}
 
 -- {{{ Borders
-theme.useless_gap   = dpi(0)
+theme.useless_gap   = dpi(6)
 theme.border_width  = dpi(2)
 theme.border_normal = "#3F3F3F"
 theme.border_focus  = "#6F6F6F"
@@ -75,17 +75,17 @@ theme.menu_width  = dpi(100)
 -- {{{ Taglist
 theme.taglist_squares_sel   = themes_path .. "zenburn/taglist/squarefz.png"
 theme.taglist_squares_unsel = themes_path .. "zenburn/taglist/squarez.png"
-theme.taglist_font = 'FontAwesome 12'
-theme.taglist_spacing     = 10
+theme.taglist_font = 'FontAwesome 14'
+theme.taglist_spacing     =  1
 theme.taglist_squares_resize = "false"
 -- }}}
 
 
-theme.systray_icon_spacing =12
+theme.systray_icon_spacing =5
 
 
 --{{{TaskList
-theme.tasklist_font = 'FontAwesome 12'
+theme.tasklist_font = 'DejaVuSerif 8'
 --}}}
 
 -- {{{ Misc
