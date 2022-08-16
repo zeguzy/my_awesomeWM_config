@@ -1,4 +1,4 @@
-pcall(require, "luarocks.loader")
+-- pcall(require, "luarocks.loader")
 
 -- Standard awesome library
 local awful = require("awful")

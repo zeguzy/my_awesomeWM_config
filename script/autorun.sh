@@ -21,8 +21,8 @@ fi
 
 run utools
 #~/.config/awesome/script/arandr.sh
-run nitrogen --restore 
-#run variety
+#run nitrogen --restore 
+run variety
 #run firewall-applet 
 run nm-applet
 # run light-locker
@@ -39,6 +39,7 @@ run blueman-applet
 run mate-power-manager
 run fcitx
 run pa-applet
+#run polybar
 #run ppet
 # run picom
 # run  plank
