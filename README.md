@@ -27,3 +27,9 @@
 2. 调节弹入弹出速度
 3. 移除PPet 背景模糊效果
 4. 移除fcitx5 背景模糊效果
+
+
+
+### 20220817
+
+xbindkeys -f ~/.xbindkeysrc

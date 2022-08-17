@@ -256,8 +256,8 @@ awful.screen.connect_for_each_screen(
                         step_width = 3,
                         step_spacing = 1,
                         enable_kill_button = true,
-                        timeout = 2
-                        -- color = "#434c5e"
+                        timeout = 2,
+                        color = "#434c5e"
                     }
                 ),
                 net_speed_widget(),
