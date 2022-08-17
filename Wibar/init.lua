@@ -209,9 +209,9 @@ awful.screen.connect_for_each_screen(
                 position = "top",
                 screen = s,
                 height = 32,
-                opacity = 0.9,
+                opacity = 0.8,
                 stretch = true,
-                -- border_width = 4,
+                border_width = 4,
                 shape = gears.shape.rounded_rect,
                 wibar_margins = 10
             }
