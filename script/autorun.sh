@@ -39,6 +39,7 @@ run blueman-applet
 run mate-power-manager
 run fcitx
 run pa-applet
+run xautolock -time 10 -locker blurlock
 #run polybar
 #run ppet
 # run picom
