@@ -337,7 +337,7 @@ theme.menu_font = "苹果丽黑字体 14"
 --theme.bg_widget = "#cc0000"
 
 -- Recolor Layout icons:
-theme = theme_assets.recolor_layout(theme, theme.wibar_fg) -- Define the icon theme for application icons. If not set then the icons
+theme = theme_assets.recolor_layout(theme, theme.wibar_fg) -- Define the icon theme for application icons. If not set then the icons -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 --
 
 --[[ Recolor titlebar icons:
@@ -360,8 +360,8 @@ theme = theme_assets.recolor_titlebar(
 theme = theme_assets.recolor_titlebar(
     theme, theme.gtk.error_bg_color, "focus", "press"
 )
-]] -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = "Papirus-Dark"
+]] theme.icon_theme =
+    "Papirus-Dark"
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, mix(theme.bg_focus, theme.fg_normal), theme.wibar_bg)

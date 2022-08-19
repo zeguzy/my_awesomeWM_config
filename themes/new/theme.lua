@@ -12,10 +12,10 @@ theme.wallpaper = themes_path .. "zenburn/zenburn-background.png"
 -- }}}
 
 -- {{{ Styles
-theme.font = "sans 12"
+theme.font = "Helvetica-Condensed-Black-Se 16"
 
 -- {{{ Colors
-theme.fg_normal = "#DCDCCC"
+theme.fg_normal = "#3992af"
 theme.fg_focus = "#2c3e50"
 theme.fg_urgent = "#CC9393"
 theme.bg_normal = "#282A2E"
@@ -73,14 +73,22 @@ theme.menu_width = dpi(100)
 
 -- {{{ Icons
 -- {{{ Taglist
-theme.taglist_squares_sel = themes_path .. "zenburn/taglist/squarefz.png"
-theme.taglist_squares_unsel = themes_path .. "zenburn/taglist/squarez.png"
-theme.taglist_font = "FontAwesome 14"
-theme.taglist_spacing = 1
-theme.taglist_squares_resize = "false"
+-- theme.taglist_squares_sel = themes_path .. "zenburn/taglist/squarefz.png"
+-- theme.taglist_squares_unsel = themes_path .. "zenburn/taglist/squarez.png"
+-- theme.taglist_font = "FontAwesome 14"
+-- theme.taglist_spacing = 1
+-- theme.taglist_squares_resize = "false"
+
+theme.taglist_fg_focus = "#3992af"
+theme.taglist_bg_focus = "#041c1a"
+theme.taglist_fg_occupied = "#164b5d"
+theme.taglist_fg_urgent = "#ED7572"
+theme.taglist_fg_empty = "#828282"
+theme.taglist_spacing = 2
+theme.taglist_font = "awesomewm-font 15"
 -- }}}
 
-theme.systray_icon_spacing = 5
+theme.systray_icon_spacing = 3
 
 --{{{TaskList
 theme.tasklist_font = "DejaVuSerif 8"

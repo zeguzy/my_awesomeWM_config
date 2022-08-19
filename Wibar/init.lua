@@ -6,6 +6,7 @@ local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout
 local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
 local naughty = require("naughty")
 local beautiful = require("beautiful")
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -110,8 +111,9 @@ awful.screen.connect_for_each_screen(
     function(s)
         -- 下面是tag设置
         --local names = {"", "", "", "", "", ""}
-        local names = {"", "", "", "", "", "", ""}
-        -- local names = { "A", "W", "E", "S", "O", "M", "E"}
+        -- local names = {"", "", "", "", "", "", ""}
+        -- local names = {"A", "W", "E", "S", "O", "M", "E"}
+        local names = {"a", "w", "e", "s", "o", "m", "e"}
         --local names = {'doc', "code",  "brows", "music", "game", "vb", "other"}
         local l = awful.layout.suit -- Just to save some typing: use an alias.
         local layouts = {
@@ -126,7 +128,10 @@ awful.screen.connect_for_each_screen(
         awful.tag(names, s, layouts)
 
         -- Create a promptbox for each screen
-        s.mypromptbox = awful.widget.prompt()
+        s.mypromptbox =
+            awful.widget.prompt {
+            prompt = "Execute: "
+        }
         -- Create an imagebox widget which will contain an icon indicating which layout we're using.
         -- We need one layoutbox per screen.
 
@@ -194,7 +199,7 @@ awful.screen.connect_for_each_screen(
         spacer = wibox.widget.textbox()
         separator = wibox.widget.textbox()
         spacer:set_text(" ")
-        separator:set_text("     ")
+        separator:set_text("  |  ")
         -- default
 
         -- or customized
@@ -220,7 +225,7 @@ awful.screen.connect_for_each_screen(
         s.mysystray = wibox.widget.systray()
 
         s.mysystray.visible = true
-        s.mysystray:set_base_size(23)
+        s.mysystray:set_base_size(24)
 
         local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
 
@@ -232,43 +237,42 @@ awful.screen.connect_for_each_screen(
                 -- Left widgets
                 layout = wibox.layout.fixed.horizontal,
                 spacer,
-                s.mylayoutbox,
-                spacer,
-                spacer,
-                spacer,
                 s.mytaglist,
                 --todo_widget(),
                 spacer,
-                spacer
-                -- separator
-                -- s.mypromptbox,
+                spacer,
+                separator,
+                s.mylayoutbox,
+                separator
             },
             -- s.mytasklist, -- Middle widget
             {
+                mytextclock,
                 layout = wibox.layout.fixed.horizontal
             },
             {
                 -- Right widgets
-                -- separator,
                 cpu_widget(
                     {
-                        width = 70,
-                        step_width = 3,
-                        step_spacing = 1,
+                        width = 50,
+                        step_width = 8,
+                        step_spacing = 2,
                         enable_kill_button = true,
                         timeout = 2,
-                        color = "#434c5e"
+                        color = "#3992af"
                     }
                 ),
+                -- spacer,
+                -- batteryarc_widget(),
+                -- spacer,
+                separator,
                 net_speed_widget(),
-                spacer,
+                separator,
                 s.mysystray,
                 spacer,
-                spacer,
-                spacer,
-                mytextclock,
+                -- separator,
                 logout_menu_widget(),
-                spacer,
+                -- spacer,
                 layout = wibox.layout.fixed.horizontal,
                 spacing = 10
             }

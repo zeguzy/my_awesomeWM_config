@@ -4,6 +4,7 @@ local awful = require("awful")
 local naughty = require("naughty")
 
 local hotkeys_popup = require("awful.hotkeys_popup")
+local run_shell = require("awesome-wm-widgets.run-shell.run-shell")
 
 -- {{{ Key bindings
 globalkeys =
@@ -204,9 +205,15 @@ globalkeys =
         end,
         {description = "restore minimized", group = "client"}
     ), -- Prompt
-    --awful.key({modkey}, "r",
-    --function() awful.screen.focused().mypromptbox:run() end,
-    --{description = "run prompt", group = "launcher"}),
+    awful.key(
+        {modkey},
+        "r",
+        function()
+            -- awful.screen.focused().mypromptbox:run()
+            run_shell.launch()
+        end,
+        {description = "run prompt", group = "launcher"}
+    ),
     awful.key(
         {modkey},
         "x",
@@ -225,6 +232,23 @@ globalkeys =
             awful.spawn(browser)
         end,
         {description = "run browser", group = "launcher"}
+    ),
+    awful.key(
+        {modkey},
+        "a",
+        function()
+            awful.spawn(windowSelector)
+        end,
+        {description = "run browser", group = "launcher"}
+    ),
+    -- 系统托盘显示切换
+    awful.key(
+        {modkey},
+        "d",
+        function()
+            awful.screen.focused().mysystray.visible = not awful.screen.focused().mysystray.visible
+        end,
+        {description = "run prompt", group = "launcher"}
     ),
     awful.key(
         {modkey},
