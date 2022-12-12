@@ -17,9 +17,8 @@ awful.rules.rules = {
             keys = clientkeys,
             buttons = clientbuttons,
             screen = awful.screen.preferred,
-            -- placement = awful.placement.centered + awful.placement.top + awful.placement.no_overlap +
-            --     awful.placement.no_offscreen
-            placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen
+            placement = awful.placement.no_overlap
+            --placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen
             -- placement = awful.placement.restore
             --
         }

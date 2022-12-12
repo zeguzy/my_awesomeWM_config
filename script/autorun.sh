@@ -19,18 +19,18 @@ if (command -v /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 && ! pgre
     /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 fi
 
-run utools
+run utools --no-sandbox
 #~/.config/awesome/script/arandr.sh
 #run nitrogen --restore 
 run variety
-#run firewall-applet 
+run firewall-applet 
 run nm-applet
 # run light-locker
 run pulseaudio -k
 run pulseaudio --start -D
 # run xcape -e 'Super_L=Super_L|Control_L|Escape'
 run thunar --daemon
-# run pamac-tray
+run pamac-tray
 run flameshot
 #run compton --shadow-exclude '!focused'
 run picom
@@ -39,14 +39,16 @@ run blueman-applet
 run mate-power-manager
 run fcitx
 run pa-applet
+run clipit
 run xautolock -time 10 -locker blurlock
 #run polybar
 #run ppet
 # run picom
 # run  plank
-# run touchpad-indicator
+run touchpad-indicator
 # run conky
 run xbindkeys -f ~/.xbindkeysrc
+run libinput-gestures
 #run indicator-china-weather
 ## The following are not included in minimal edition by default
 ## but autorun.sh will pick them up if you install them

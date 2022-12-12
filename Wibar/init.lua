@@ -185,8 +185,8 @@ awful.screen.connect_for_each_screen(
             awful.widget.tasklist {
             screen = s,
             filter = awful.widget.tasklist.filter.currenttags,
-            buttons = tasklist_buttons
-            -- widget_template = beautiful.tasklist_widget_template
+            buttons = tasklist_buttons,
+            widget_template = beautiful.tasklist_widget_template
         }
         -- local month_calendar = awful.widget.calendar_popup.month()
         -- month_calendar:attach( mytextclock, 'tr' )
@@ -213,7 +213,7 @@ awful.screen.connect_for_each_screen(
             {
                 position = "top",
                 screen = s,
-                height = 32,
+                height = 27,
                 opacity = 0.8,
                 stretch = true,
                 border_width = 4,
@@ -225,7 +225,7 @@ awful.screen.connect_for_each_screen(
         s.mysystray = wibox.widget.systray()
 
         s.mysystray.visible = true
-        s.mysystray:set_base_size(24)
+        s.mysystray:set_base_size()
 
         local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
 
@@ -248,6 +248,7 @@ awful.screen.connect_for_each_screen(
             -- s.mytasklist, -- Middle widget
             {
                 mytextclock,
+                -- s.mytasklist,
                 layout = wibox.layout.fixed.horizontal
             },
             {
@@ -268,10 +269,10 @@ awful.screen.connect_for_each_screen(
                 separator,
                 net_speed_widget(),
                 separator,
+                logout_menu_widget(),
                 s.mysystray,
                 spacer,
                 -- separator,
-                logout_menu_widget(),
                 -- spacer,
                 layout = wibox.layout.fixed.horizontal,
                 spacing = 10

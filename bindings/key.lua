@@ -234,6 +234,14 @@ globalkeys =
         {description = "run browser", group = "launcher"}
     ),
     awful.key(
+        {modkey, "Shift"},
+        "e",
+        function()
+            awful.spawn("i3lock-fancy")
+        end,
+        {description = "run browser", group = "launcher"}
+    ),
+    awful.key(
         {modkey},
         "a",
         function()
@@ -268,7 +276,7 @@ globalkeys =
     ),
     awful.key(
         {modkey},
-        "v",
+        "g",
         function()
             awful.spawn(volume)
         end,

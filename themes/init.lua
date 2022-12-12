@@ -4,3 +4,4 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 
 beautiful.init(awful.util.getdir("config") .. "/themes/new/theme.lua")
+
