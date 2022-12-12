@@ -1,6 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
-beautiful.useless_gap = 3
+beautiful.useless_gap = 4
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
