@@ -3,10 +3,14 @@ local gears = require("gears")
 local awful = require("awful")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
-local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
+-- local logout_popup = require("awesome-wm-widgets.logout-popup-widget.logout-popup")
+local my_btn_textclock = require("my-widgets.time-widgets.btn-time")
+-- local my_textclock = require("my-widgets.time-widgets.time")
+local popup_tasklist = require("my-widgets.popup-tasklist")
+local net_speed_widget = require("my-widgets.net-speed-widget.net-speed")
+
 local naughty = require("naughty")
 local beautiful = require("beautiful")
-local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -105,16 +109,11 @@ local function set_wallpaper(s)
     end
 end
 
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 -- screen.connect_signal("property::geometry", set_wallpaper)
 awful.screen.connect_for_each_screen(
     function(s)
         -- 下面是tag设置
-        --local names = {"", "", "", "", "", ""}
-        -- local names = {"", "", "", "", "", "", ""}
-        -- local names = {"A", "W", "E", "S", "O", "M", "E"}
-        local names = {"a", "w", "e", "s", "o", "m", "e"}
-        --local names = {'doc', "code",  "brows", "music", "game", "vb", "other"}
+        local names = {"A", "W", "E", "S", "O", "M", "E"}
         local l = awful.layout.suit -- Just to save some typing: use an alias.
         local layouts = {
             l.tile.left,
@@ -170,7 +169,6 @@ awful.screen.connect_for_each_screen(
             )
         )
 
-        -- s.mylayoutbox:set_spacing_widget(15)
 
         -- Create a taglist widget
         s.mytaglist =
@@ -181,13 +179,13 @@ awful.screen.connect_for_each_screen(
             style = {shape = gears.shape.rounded_rect}
         }
 
-        s.mytasklist =
-            awful.widget.tasklist {
-            screen = s,
-            filter = awful.widget.tasklist.filter.currenttags,
-            buttons = tasklist_buttons,
-            widget_template = beautiful.tasklist_widget_template
-        }
+        -- s.mytasklist =
+        --     awful.widget.tasklist {
+        --     screen = s,
+        --     filter = awful.widget.tasklist.filter.currenttags,
+        --     buttons = tasklist_buttons,
+        --     widget_template = beautiful.tasklist_widget_template
+        -- }
         -- local month_calendar = awful.widget.calendar_popup.month()
         -- month_calendar:attach( mytextclock, 'tr' )
         -- --month_calendar:toggle()
@@ -195,11 +193,20 @@ awful.screen.connect_for_each_screen(
         -- local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
         -- local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 
-        mytextclock = wibox.widget.textclock("%H:%M   ")
-        spacer = wibox.widget.textbox()
-        separator = wibox.widget.textbox()
+        -- mytextclock = wibox.widget.textclock("%Y-%M-%d %H:%M  ")
+        local spacer = wibox.widget.textbox()
+        local separator = wibox.widget.textbox()
         spacer:set_text(" ")
-        separator:set_text("  |  ")
+        separator:set_text("  ")
+
+        s.mysystray = wibox.widget.systray()
+        s.popup_tasklist = popup_tasklist()
+        
+        s.mysystray.visible = true
+        s.mysystray:set_base_size()
+
+        s.net_speed_widget = net_speed_widget()
+
         -- default
 
         -- or customized
@@ -208,74 +215,56 @@ awful.screen.connect_for_each_screen(
         --        if button == 1 then cw.toggle() end
         --    end)
         -- Create the wibox
-        s.mywibox =
+        s.bar =
             awful.wibar(
             {
                 position = "top",
                 screen = s,
                 height = 27,
-                opacity = 0.8,
+                opacity =0.8,
                 stretch = true,
-                border_width = 4,
-                shape = gears.shape.rounded_rect,
-                wibar_margins = 10
+                ontop = true,
+                -- bg = "#00000000",
+                border_width = 0,
+                shape = gears.shape.rect
             }
         )
 
-        s.mysystray = wibox.widget.systray()
-
-        s.mysystray.visible = true
-        s.mysystray:set_base_size()
-
-        local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
-
         -- Add widgets to the wibox
-        s.mywibox:setup {
+        s.bar:setup {
             layout = wibox.layout.align.horizontal,
-            align = "centered",
             {
                 -- Left widgets
                 layout = wibox.layout.fixed.horizontal,
-                spacer,
                 s.mytaglist,
-                --todo_widget(),
                 spacer,
                 spacer,
                 separator,
                 s.mylayoutbox,
                 separator
             },
-            -- s.mytasklist, -- Middle widget
             {
-                mytextclock,
-                -- s.mytasklist,
-                layout = wibox.layout.fixed.horizontal
+                my_btn_textclock(),
+                -- popup_tasklist(),
+                layout = wibox.layout.fixed.horizontal,
+                s.net_speed_widget,
             },
             {
-                -- Right widgets
                 cpu_widget(
                     {
                         width = 50,
-                        step_width = 8,
+                        step_width = 2,
                         step_spacing = 2,
                         enable_kill_button = true,
-                        timeout = 2,
+                        timeout = 1,
                         color = "#3992af"
                     }
                 ),
-                -- spacer,
-                -- batteryarc_widget(),
-                -- spacer,
                 separator,
-                net_speed_widget(),
-                separator,
-                logout_menu_widget(),
                 s.mysystray,
-                spacer,
-                -- separator,
-                -- spacer,
+                logout_menu_widget(),
                 layout = wibox.layout.fixed.horizontal,
-                spacing = 10
+                spacing = 1
             }
         }
     end

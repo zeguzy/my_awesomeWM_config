@@ -1,6 +1,5 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
-beautiful.useless_gap = 4
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
@@ -17,10 +16,9 @@ awful.rules.rules = {
             keys = clientkeys,
             buttons = clientbuttons,
             screen = awful.screen.preferred,
-            placement = awful.placement.no_overlap
-            --placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen
-            -- placement = awful.placement.restore
-            --
+            -- placement = awful.placement.centered + awful.placement.no_overlap
+            -- placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen
+            placement = awful.placement.no_overlap+awful.placement.no_offscreen
         }
     }, -- Floating clients.
     {
@@ -72,14 +70,14 @@ awful.rules.rules = {
         }
     },
     {
-        rule_any = {class = {"Cairo-clock"}},
+        rule_any = {class = {"Cairo-clock" , "Plank"}},
         properties = {
             floating = true,
             border_width = 0,
             screen = screen[1],
             skip_taskbar = true,
             sticky = true,
-            focusable = false,
+            focusable = true,
             placement = awful.placement.top,
             titlebars_enabled = false
         }
