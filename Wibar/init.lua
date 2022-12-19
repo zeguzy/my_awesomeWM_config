@@ -244,7 +244,6 @@ awful.screen.connect_for_each_screen(
                 separator
             },
             {
-                my_btn_textclock(),
                 -- popup_tasklist(),
                 layout = wibox.layout.fixed.horizontal,
                 s.net_speed_widget,
@@ -260,6 +259,7 @@ awful.screen.connect_for_each_screen(
                         color = "#3992af"
                     }
                 ),
+                my_btn_textclock(),
                 separator,
                 s.mysystray,
                 logout_menu_widget(),

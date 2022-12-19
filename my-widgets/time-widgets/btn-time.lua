@@ -8,13 +8,27 @@ local my_textclock = {}
 
 local function worker(user_args)
 
-  local date = awesomebuttons.with_icon_and_date({
+  -- local date = awesomebuttons.with_icon_and_date({
+  --   icon = 'calendar',
+  --   type = 'outline',
+  --   onclick = function()
+  --     awful.spawn.with_shell('alacritty -e calcurse')
+  --   end
+  -- })
+
+  local date = awesomebuttons.with_icon_and_widget({
+    widget = {
+      id = "time",
+      format = "%Y-%m-%d",
+      widget = wibox.widget.textclock,
+    },
     icon = 'calendar',
     type = 'outline',
     onclick = function()
       awful.spawn.with_shell('alacritty -e calcurse')
     end
   })
+
 
   -- date:buttons(
   --   awful.util.table.join(
@@ -42,7 +56,7 @@ local function worker(user_args)
   -- )
 
   my_textclock = wibox.widget {
-    date, 
+    date,
     time,
     layout = wibox.layout.fixed.horizontal,
   }
