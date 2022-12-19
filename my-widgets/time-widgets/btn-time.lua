@@ -12,7 +12,7 @@ local function worker(user_args)
   --   icon = 'calendar',
   --   type = 'outline',
   --   onclick = function()
-  --     awful.spawn.with_shell('alacritty -e calcurse')
+  --     awful.spawn('alacritty -e calcurse')
   --   end
   -- })
 
@@ -25,7 +25,7 @@ local function worker(user_args)
     icon = 'calendar',
     type = 'outline',
     onclick = function()
-      awful.spawn.with_shell('alacritty -e calcurse')
+      awful.spawn('alacritty -e calcurse')
     end
   })
 

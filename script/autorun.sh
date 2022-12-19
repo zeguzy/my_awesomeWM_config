@@ -19,7 +19,6 @@ if (command -v /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 && ! pgre
     /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 fi
 
-run utools 
 #~/.config/awesome/script/arandr.sh
 #run nitrogen --restore 
 run variety
@@ -47,11 +46,12 @@ run xautolock -time 10 -locker blurlock
 # run  plank
 run touchpad-indicator
 # run conky
-run xbindkeys -f ./xbindkeysrc
-run libinput-gestures -c  ./gersturesrc
+run xbindkeys -f ./.xbindkeysrc
+run libinput-gestures -c  ./.gersturesrc
 #run indicator-china-weather
 ## The following are not included in minimal edition by default
 ## but autorun.sh will pick them up if you install them
+run utools 
 
 if (command -v system-config-printer-applet && ! pgrep applet.py ); then
   system-config-printer-applet &
