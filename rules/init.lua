@@ -1,9 +1,12 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
+
+local keys = require('bindings')
+
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
+local rules = {
     -- All clients will match this rule.
     {
         rule = {},
@@ -13,8 +16,8 @@ awful.rules.rules = {
             -- border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = false,
-            keys = clientkeys,
-            buttons = clientbuttons,
+            keys = keys.clientkeys,
+            buttons = keys.clientbuttons,
             screen = awful.screen.preferred,
             -- placement = awful.placement.centered + awful.placement.no_overlap
             -- placement = awful.placement.centered + awful.placement.no_overlap + awful.placement.no_offscreen
@@ -188,4 +191,6 @@ awful.rules.rules = {
         }
     }
 }
+
+return rules
 -- }}}

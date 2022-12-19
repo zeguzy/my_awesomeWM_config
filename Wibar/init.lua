@@ -12,54 +12,11 @@ local net_speed_widget = require("my-widgets.net-speed-widget.net-speed")
 local naughty = require("naughty")
 local beautiful = require("beautiful")
 
--- {{{ Wibar
--- Create a textclock widget
-mytextclock = wibox.widget.textclock("%a   %H:%M ", 60)
+-- Keyboard map indicator and switcher
+-- mykeyboardlayout = awful.widget.keyboardlayout()
 
+-- {{{ Wibar
 -- Create a wibox for each screen and add it
-local taglist_buttons =
-    gears.table.join(
-    awful.button(
-        {},
-        1,
-        function(t)
-            t:view_only()
-        end
-    ),
-    awful.button(
-        {modkey},
-        1,
-        function(t)
-            if client.focus then
-                client.focus:move_to_tag(t)
-            end
-        end
-    ),
-    awful.button({}, 3, awful.tag.viewtoggle),
-    awful.button(
-        {modkey},
-        3,
-        function(t)
-            if client.focus then
-                client.focus:toggle_tag(t)
-            end
-        end
-    ),
-    awful.button(
-        {},
-        4,
-        function(t)
-            awful.tag.viewnext(t.screen)
-        end
-    ),
-    awful.button(
-        {},
-        5,
-        function(t)
-            awful.tag.viewprev(t.screen)
-        end
-    )
-)
 
 local tasklist_buttons =
     gears.table.join(
@@ -110,163 +67,204 @@ local function set_wallpaper(s)
 end
 
 -- screen.connect_signal("property::geometry", set_wallpaper)
-awful.screen.connect_for_each_screen(
-    function(s)
-        -- 下面是tag设置
-        local names = {"A", "W", "E", "S", "O", "M", "E"}
-        local l = awful.layout.suit -- Just to save some typing: use an alias.
-        local layouts = {
-            l.tile.left,
-            l.tile.left,
-            l.tile.left,
-            l.floating,
-            l.floating,
-            l.floating,
-            l.floating
-        }
-        awful.tag(names, s, layouts)
+return function(s)
+    -- 下面是tag设置
+    local names = {"A", "W", "E", "S", "O", "M", "E"}
+    local l = awful.layout.suit -- Just to save some typing: use an alias.
+    local layouts = {
+        l.tile.left,
+        l.tile.left,
+        l.tile.left,
+        l.floating,
+        l.floating,
+        l.floating,
+        l.floating
+    }
+    awful.tag(names, s, layouts)
 
-        -- Create a promptbox for each screen
-        s.mypromptbox =
-            awful.widget.prompt {
-            prompt = "Execute: "
-        }
-        -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-        -- We need one layoutbox per screen.
+    -- Create a promptbox for each screen
+    s.mypromptbox =
+        awful.widget.prompt {
+        prompt = "Execute: "
+    }
+    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
+    -- We need one layoutbox per screen.
 
-        s.mylayoutbox = awful.widget.layoutbox(s)
+    s.mylayoutbox = awful.widget.layoutbox(s)
 
-        s.mylayoutbox:buttons(
-            gears.table.join(
-                awful.button(
-                    {},
-                    1,
-                    function()
-                        awful.layout.inc(1)
-                    end
-                ),
-                awful.button(
-                    {},
-                    3,
-                    function()
-                        awful.layout.inc(-1)
-                    end
-                ),
-                awful.button(
-                    {},
-                    4,
-                    function()
-                        awful.layout.inc(1)
-                    end
-                ),
-                awful.button(
-                    {},
-                    5,
-                    function()
-                        awful.layout.inc(-1)
-                    end
-                )
+    s.mylayoutbox:buttons(
+        gears.table.join(
+            awful.button(
+                {},
+                1,
+                function()
+                    awful.layout.inc(1)
+                end
+            ),
+            awful.button(
+                {},
+                3,
+                function()
+                    awful.layout.inc(-1)
+                end
+            ),
+            awful.button(
+                {},
+                4,
+                function()
+                    awful.layout.inc(1)
+                end
+            ),
+            awful.button(
+                {},
+                5,
+                function()
+                    awful.layout.inc(-1)
+                end
             )
         )
+    )
 
-
-        -- Create a taglist widget
-        s.mytaglist =
-            awful.widget.taglist {
-            screen = s,
-            filter = awful.widget.taglist.filter.all,
-            buttons = taglist_buttons,
-            style = {shape = gears.shape.rounded_rect}
-        }
-
-        -- s.mytasklist =
-        --     awful.widget.tasklist {
-        --     screen = s,
-        --     filter = awful.widget.tasklist.filter.currenttags,
-        --     buttons = tasklist_buttons,
-        --     widget_template = beautiful.tasklist_widget_template
-        -- }
-        -- local month_calendar = awful.widget.calendar_popup.month()
-        -- month_calendar:attach( mytextclock, 'tr' )
-        -- --month_calendar:toggle()
-
-        -- local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
-        -- local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
-
-        -- mytextclock = wibox.widget.textclock("%Y-%M-%d %H:%M  ")
-        local spacer = wibox.widget.textbox()
-        local separator = wibox.widget.textbox()
-        spacer:set_text(" ")
-        separator:set_text("  ")
-
-        s.mysystray = wibox.widget.systray()
-        s.popup_tasklist = popup_tasklist()
-        
-        s.mysystray.visible = true
-        s.mysystray:set_base_size()
-
-        s.net_speed_widget = net_speed_widget()
-
-        -- default
-
-        -- or customized
-        -- mytextclock:connect_signal("button::press",
-        --    function(_, _, _, button)
-        --        if button == 1 then cw.toggle() end
-        --    end)
-        -- Create the wibox
-        s.bar =
-            awful.wibar(
-            {
-                position = "top",
-                screen = s,
-                height = 27,
-                opacity =0.8,
-                stretch = true,
-                ontop = true,
-                -- bg = "#00000000",
-                border_width = 0,
-                shape = gears.shape.rect
-            }
+    -- Create a taglist widget
+    local taglist_buttons =gears.table.join(
+        awful.button(
+            {},
+            1,
+            function(t)
+                t:view_only()
+            end
+        ),
+        awful.button(
+            {modkey},
+            1,
+            function(t)
+                if client.focus then
+                    client.focus:move_to_tag(t)
+                end
+            end
+        ),
+        awful.button({}, 3, awful.tag.viewtoggle),
+        awful.button(
+            {modkey},
+            3,
+            function(t)
+                if client.focus then
+                    client.focus:toggle_tag(t)
+                end
+            end
+        ),
+        awful.button(
+            {},
+            4,
+            function(t)
+                awful.tag.viewnext(t.screen)
+            end
+        ),
+        awful.button(
+            {},
+            5,
+            function(t)
+                awful.tag.viewprev(t.screen)
+            end
         )
+    )
+    s.mytaglist =
+        awful.widget.taglist {
+        screen = s,
+        filter = awful.widget.taglist.filter.all,
+        buttons = taglist_buttons,
+        style = {shape = gears.shape.rounded_rect}
+    }
 
-        -- Add widgets to the wibox
-        s.bar:setup {
-            layout = wibox.layout.align.horizontal,
-            {
-                -- Left widgets
-                layout = wibox.layout.fixed.horizontal,
-                s.mytaglist,
-                spacer,
-                spacer,
-                separator,
-                s.mylayoutbox,
-                separator
-            },
-            {
-                -- popup_tasklist(),
-                layout = wibox.layout.fixed.horizontal,
-                s.net_speed_widget,
-            },
-            {
-                cpu_widget(
-                    {
-                        width = 50,
-                        step_width = 2,
-                        step_spacing = 2,
-                        enable_kill_button = true,
-                        timeout = 1,
-                        color = "#3992af"
-                    }
-                ),
-                my_btn_textclock(),
-                separator,
-                s.mysystray,
-                logout_menu_widget(),
-                layout = wibox.layout.fixed.horizontal,
-                spacing = 1
-            }
+    -- s.mytasklist =
+    --     awful.widget.tasklist {
+    --     screen = s,
+    --     filter = awful.widget.tasklist.filter.currenttags,
+    --     buttons = tasklist_buttons,
+    --     widget_template = beautiful.tasklist_widget_template
+    -- }
+    -- local month_calendar = awful.widget.calendar_popup.month()
+    -- month_calendar:attach( mytextclock, 'tr' )
+    -- --month_calendar:toggle()
+
+    -- local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
+    -- local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+
+    -- mytextclock = wibox.widget.textclock("%Y-%M-%d %H:%M  ")
+    local spacer = wibox.widget.textbox()
+    local separator = wibox.widget.textbox()
+    spacer:set_text(" ")
+    separator:set_text("  ")
+
+    s.mysystray = wibox.widget.systray()
+    s.popup_tasklist = popup_tasklist()
+
+    s.mysystray.visible = true
+    s.mysystray:set_base_size()
+
+    s.net_speed_widget = net_speed_widget()
+
+    -- default
+
+    -- or customized
+    -- mytextclock:connect_signal("button::press",
+    --    function(_, _, _, button)
+    --        if button == 1 then cw.toggle() end
+    --    end)
+    -- Create the wibox
+    s.bar =
+        awful.wibar(
+        {
+            position = "top",
+            screen = s,
+            height = 27,
+            opacity = 0.8,
+            stretch = true,
+            ontop = true,
+            -- bg = "#00000000",
+            border_width = 0,
+            shape = gears.shape.rect
         }
-    end
-)
+    )
+
+    -- Add widgets to the wibox
+    s.bar:setup {
+        layout = wibox.layout.align.horizontal,
+        {
+            -- Left widgets
+            layout = wibox.layout.fixed.horizontal,
+            s.mytaglist,
+            spacer,
+            spacer,
+            separator,
+            s.mylayoutbox,
+            separator
+        },
+        {
+            -- popup_tasklist(),
+            layout = wibox.layout.fixed.horizontal,
+            s.net_speed_widget
+        },
+        {
+            cpu_widget(
+                {
+                    width = 50,
+                    step_width = 2,
+                    step_spacing = 2,
+                    enable_kill_button = true,
+                    timeout = 1,
+                    color = "#3992af"
+                }
+            ),
+            spacer,
+            my_btn_textclock(),
+            separator,
+            -- mykeyboardlayout,
+            s.mysystray,
+            logout_menu_widget(),
+            layout = wibox.layout.fixed.horizontal,
+            spacing = 1
+        }
+    }
+end
 -- }}}
